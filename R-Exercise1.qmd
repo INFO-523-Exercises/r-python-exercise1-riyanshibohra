@@ -5,9 +5,9 @@ format: html
 editor: visual
 ---
 
-## Homework 1: In R
+# Homework 1: In R
 
-Installing the required packages:
+## Installing the required packages
 
 ```{r}
 if (!require("pacman"))
@@ -26,14 +26,14 @@ p_load(dlookr,
        tidyverse) # Data wrangling, manipulation, visualization
 ```
 
-Loading the data:
+## Loading the data
 
 ```{r}
 data(algae, package = "DMwR2")
 algae |> glimpse()
 ```
 
-Finding the Mean, Median and Mode: Central Tendency-
+## Finding the Mean, Median and Mode: Central Tendency
 
 ```{r}
 # Calculating Mean
@@ -58,7 +58,7 @@ return (ux[which.max(tabulate(match(x, ux)))])
 algae$a2 |> Mode()
 ```
 
-Using the DMwR centralValue() function:
+## Using the DMwR centralValue() function
 
 ```{r}
 # Numerical variable
@@ -67,7 +67,7 @@ algae$a1 |> centralValue()
 algae$speed |> centralValue()
 ```
 
-Finding the Statistics of spread: Variation-
+## Finding the Statistics of spread: Variation
 
 ```{r}
 # Finding Variance
@@ -105,7 +105,7 @@ algae$a1 |> quantile()
 algae$a1 |> quantile(probs = c(0.2, 0.8)) #Specifying specific quantiles
 ```
 
-Finding the Missing Values:
+## Finding the Missing Values
 
 ```{r}
 # Calculating the total number of null values in the dataset
@@ -128,7 +128,7 @@ incomplete_rows <- algae %>%
 cat("The dataset contains ", incomplete_rows, "(out of ", nrow(algae),") incomplete rows. \n") #printing the number of incomplete rows
 ```
 
-Summarizing the dataset:
+## Summarizing the dataset
 
 ```{r}
 # Using the summary() 
@@ -146,7 +146,7 @@ penguins |> Hmisc::describe()
 penguins |> dlookr::describe()
 ```
 
-Finding the summary of a subset of data:
+### Finding the summary of a subset of data
 
 ```{r}
 algae |>
@@ -173,7 +173,7 @@ algae |>
   summarise_all(c("min", "max"))
 ```
 
-Using the summarise() with group_by():
+### Using the summarise() with group_by()
 
 ```{r}
 algae |>
@@ -187,7 +187,7 @@ penguins |>
   summarise(var = var(bill_length_mm, na.rm = TRUE))
 ```
 
-Aggregating the data:
+### Aggregating the data
 
 ```{r}
 # Using reframe()
@@ -203,7 +203,7 @@ penguins |>
   dlookr::describe(bill_length_mm)
 ```
 
-Advanced:
+# Advanced Questions
 
 1.  List data types of the attributes in your tidy dataset:
 

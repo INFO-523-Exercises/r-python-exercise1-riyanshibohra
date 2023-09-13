@@ -101,9 +101,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="homework-1-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="homework-1-in-r">Homework 1: In R</h2>
-<p>Installing the required packages:</p>
+<section id="homework-1-in-r" class="level1">
+<h1>Homework 1: In R</h1>
+<section id="installing-the-required-packages" class="level2">
+<h2 class="anchored" data-anchor-id="installing-the-required-packages">Installing the required packages</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pacman"</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -122,7 +123,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>       palmerpenguins, <span class="co"># Alternative to the Iris dataset</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>       tidyverse) <span class="co"># Data wrangling, manipulation, visualization</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Loading the data:</p>
+</section>
+<section id="loading-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-data">Loading the data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(algae, <span class="at">package =</span> <span class="st">"DMwR2"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>algae <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -149,7 +152,9 @@ $ a6     &lt;dbl&gt; 8.3, 0.0, 0.0, 0.0, 4.1, 12.6, 6.8, 8.7, 0.0, 0.0, 0.0, 0.0
 $ a7     &lt;dbl&gt; 0.0, 2.1, 9.7, 1.4, 1.0, 2.9, 0.0, 0.0, 0.0, 1.7, 6.0, 1.5, 2.1…</code></pre>
 </div>
 </div>
-<p>Finding the Mean, Median and Mode: Central Tendency-</p>
+</section>
+<section id="finding-the-mean-median-and-mode-central-tendency" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-mean-median-and-mode-central-tendency">Finding the Mean, Median and Mode: Central Tendency</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating Mean</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>algae<span class="sc">$</span>a1 <span class="sc">|&gt;</span></span>
@@ -179,7 +184,9 @@ $ a7     &lt;dbl&gt; 0.0, 2.1, 9.7, 1.4, 1.0, 2.9, 0.0, 0.0, 0.0, 1.7, 6.0, 1.5,
 <pre><code>[1] 0</code></pre>
 </div>
 </div>
-<p>Using the DMwR centralValue() function:</p>
+</section>
+<section id="using-the-dmwr-centralvalue-function" class="level2">
+<h2 class="anchored" data-anchor-id="using-the-dmwr-centralvalue-function">Using the DMwR centralValue() function</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numerical variable</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>algae<span class="sc">$</span>a1 <span class="sc">|&gt;</span> <span class="fu">centralValue</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -192,7 +199,9 @@ $ a7     &lt;dbl&gt; 0.0, 2.1, 9.7, 1.4, 1.0, 2.9, 0.0, 0.0, 0.0, 1.7, 6.0, 1.5,
 <pre><code>[1] "high"</code></pre>
 </div>
 </div>
-<p>Finding the Statistics of spread: Variation-</p>
+</section>
+<section id="finding-the-statistics-of-spread-variation" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-statistics-of-spread-variation">Finding the Statistics of spread: Variation</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding Variance</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>algae<span class="sc">$</span>a1 <span class="sc">|&gt;</span> <span class="fu">var</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -248,7 +257,9 @@ $ a7     &lt;dbl&gt; 0.0, 2.1, 9.7, 1.4, 1.0, 2.9, 0.0, 0.0, 0.0, 1.7, 6.0, 1.5,
  1.20 32.18 </code></pre>
 </div>
 </div>
-<p>Finding the Missing Values:</p>
+</section>
+<section id="finding-the-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-missing-values">Finding the Missing Values</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculating the total number of null values in the dataset</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -282,7 +293,9 @@ dplyr 1.1.0.
 <pre><code>The dataset contains  200 (out of  200 ) incomplete rows. </code></pre>
 </div>
 </div>
-<p>Summarizing the dataset:</p>
+</section>
+<section id="summarizing-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="summarizing-the-dataset">Summarizing the dataset</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the summary() </span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>algae <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -424,7 +437,8 @@ For the frequency table, variable is rounded to the nearest 0.02
 #   p99 &lt;dbl&gt;, p100 &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Finding the summary of a subset of data:</p>
+<section id="finding-the-summary-of-a-subset-of-data" class="level3">
+<h3 class="anchored" data-anchor-id="finding-the-summary-of-a-subset-of-data">Finding the summary of a subset of data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>algae <span class="sc">|&gt;</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgNO3 =</span> <span class="fu">mean</span>(NO3, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
@@ -481,7 +495,9 @@ For the frequency table, variable is rounded to the nearest 0.02
 # ℹ 3 more variables: a5_max &lt;dbl&gt;, a6_max &lt;dbl&gt;, a7_max &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Using the summarise() with group_by():</p>
+</section>
+<section id="using-the-summarise-with-group_by" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-summarise-with-group_by">Using the summarise() with group_by()</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>algae <span class="sc">|&gt;</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(season, size) <span class="sc">|&gt;</span></span>
@@ -522,7 +538,9 @@ For the frequency table, variable is rounded to the nearest 0.02
 3 Gentoo     9.50</code></pre>
 </div>
 </div>
-<p>Aggregating the data:</p>
+</section>
+<section id="aggregating-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="aggregating-the-data">Aggregating the data</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using reframe()</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -567,7 +585,11 @@ For the frequency table, variable is rounded to the nearest 0.02
 #   p99 &lt;dbl&gt;, p100 &lt;dbl&gt;</code></pre>
 </div>
 </div>
-<p>Advanced:</p>
+</section>
+</section>
+</section>
+<section id="advanced-questions" class="level1">
+<h1>Advanced Questions</h1>
 <ol type="1">
 <li>List data types of the attributes in your tidy dataset:</li>
 </ol>
