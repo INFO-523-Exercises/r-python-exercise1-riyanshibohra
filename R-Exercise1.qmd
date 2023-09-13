@@ -1,0 +1,260 @@
+---
+title: "R-Exercise1"
+author: "Riyanshi Bohra"
+format: html
+editor: visual
+---
+
+## Homework 1: In R
+
+Installing the required packages:
+
+```{r}
+if (!require("pacman"))
+ install.packages("pacman")
+```
+
+```{r}
+#Loading the libraries
+library(pacman)
+
+p_load(dlookr,
+       DMwR2, # Data Mining with R functions
+       GGally, # Pair-wise plots using ggplot2
+       Hmisc, # Data analysis 
+       palmerpenguins, # Alternative to the Iris dataset
+       tidyverse) # Data wrangling, manipulation, visualization
+```
+
+Loading the data:
+
+```{r}
+data(algae, package = "DMwR2")
+algae |> glimpse()
+```
+
+Finding the Mean, Median and Mode: Central Tendency-
+
+```{r}
+# Calculating Mean
+algae$a1 |>
+  mean()
+```
+
+```{r}
+# Calculating Median
+algae$a1 |>
+  median()
+```
+
+```{r}
+#Calculating Mode
+Mode <- function(x, na.rm=FALSE){
+if(na.rm) x<-x[!is.na(x)]
+ux <- unique (x)
+return (ux[which.max(tabulate(match(x, ux)))])
+}
+
+algae$a2 |> Mode()
+```
+
+Using the DMwR centralValue() function:
+
+```{r}
+# Numerical variable
+algae$a1 |> centralValue()
+# Nominal variable
+algae$speed |> centralValue()
+```
+
+Finding the Statistics of spread: Variation-
+
+```{r}
+# Finding Variance
+algae$a1 |> var()
+```
+
+```{r}
+# Finding the Standard Deviation
+algae$a1 |> sd()
+```
+
+```{r}
+# Finding the Range
+algae$a1 |> range()
+```
+
+```{r}
+# Finding the maximum value
+algae$a1 |> max()
+```
+
+```{r}
+# Finding the minimum value
+algae$a1 |> min()
+```
+
+```{r}
+# Finding the interquartile range
+algae$a1 |> IQR()
+```
+
+```{r}
+# Finding the Quantiles
+algae$a1 |> quantile()
+algae$a1 |> quantile(probs = c(0.2, 0.8)) #Specifying specific quantiles
+```
+
+Finding the Missing Values:
+
+```{r}
+# Calculating the total number of null values in the dataset
+
+library(purrr)
+nas <- algae %>% 
+  purrr::map_dbl(~sum(is.na(.))) %>% 
+  sum()
+
+cat("The dataset contains ", nas, "NA values. \n")
+```
+
+```{r}
+# Calculating the total number of incomplete rows in the dataset
+
+incomplete_rows <- algae %>% 
+  summarise_all(~!complete.cases(.)) %>%
+  nrow()
+
+cat("The dataset contains ", incomplete_rows, "(out of ", nrow(algae),") incomplete rows. \n") #printing the number of incomplete rows
+```
+
+Summarizing the dataset:
+
+```{r}
+# Using the summary() 
+algae |> summary()
+```
+
+```{r}
+# Using the Hmisc's describe() 
+data("penguins")
+penguins |> Hmisc::describe()
+```
+
+```{r}
+# Using the dlookr's describe() 
+penguins |> dlookr::describe()
+```
+
+Finding the summary of a subset of data:
+
+```{r}
+algae |>
+  summarise(avgNO3 = mean(NO3, na.rm=TRUE),
+            medA1 = median(a1))
+```
+
+```{r}
+# Using the summarise_all() method
+algae |>
+  select(mxPH:Cl) |>
+  summarise_all(list(mean, median), na.rm = TRUE)
+```
+
+```{r}
+algae |>
+  select(a1:a7) |>
+  summarise_all(funs(var))
+```
+
+```{r}
+algae |>
+  select(a1:a7) |>
+  summarise_all(c("min", "max"))
+```
+
+Using the summarise() with group_by():
+
+```{r}
+algae |>
+  group_by(season, size) |>
+  summarise(nObs = n(), mA7 = median(a7))
+```
+
+```{r}
+penguins |> 
+  group_by(species) |>
+  summarise(var = var(bill_length_mm, na.rm = TRUE))
+```
+
+Aggregating the data:
+
+```{r}
+# Using reframe()
+penguins |>
+  group_by(species) |>
+  reframe(var = quantile(bill_length_mm, na.rm = TRUE))
+```
+
+```{r}
+# Using dlookr
+penguins |>
+  group_by(species) |>
+  dlookr::describe(bill_length_mm)
+```
+
+Advanced:
+
+1.  List data types of the attributes in your tidy dataset:
+
+```{r}
+str(algae)
+```
+
+2.  Check for skewness in data distribution in the attributes:
+
+```{r}
+algae %>% 
+  select_if(is.numeric) %>%
+  summarise(across(everything(), skewness, na.rm = TRUE))
+```
+
+3.  Check for correlations among the attributes:
+
+```{r}
+# Finding the correlations
+cor_matrix <- cor(algae %>% select_if(is.numeric), use = "complete.obs")
+```
+
+```{r}
+# Installing and importing necessary libraries for visualizing the correlations between attributes 
+if(!require("corrplot"))
+  install.packages("corrplot")
+```
+
+```{r}
+library(corrplot)
+```
+
+```{r}
+# Visualizing correlations using corrplot
+corrplot(cor_matrix, method = "circle", type = "lower", order = "hclust", 
+         tl.col = "black", tl.srt = 45)
+```
+
+4.  Examine the extent of missing data and the best way to deal with them:
+
+```{r}
+#Examining the extent of missing data:
+missing_data_summary <- algae %>% 
+  summarise(across(everything(), ~mean(is.na(.))*100))
+print(missing_data_summary)
+```
+
+```{r}
+# Suggesting ways to deal with missing data
+cat("Best ways to deal with missing data are: \n")
+cat("1. Using mean, median, or mode for the replacement of missing values in numeric variables.\n")
+cat("2. If the amount of missing data is relatively low, we can consider eliminating those rows or columns. \n")
+cat("3. Using algorithms like KNN or regression to impute missing values.\n")
+```
